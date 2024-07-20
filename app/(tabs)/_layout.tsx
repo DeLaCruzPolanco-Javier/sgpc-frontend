@@ -1,76 +1,16 @@
-
-// import React from 'react';
-// import { useColorScheme } from '@/hooks/useColorScheme';
-
-
-// // new layout
-// import {GestureHandlerRootView} from 'react-native-gesture-handler';
-// import {Drawer} from 'expo-router/drawer'
-// import { DrawerActions } from '@react-navigation/native';
-// export default function TabLayout() {
-//   const colorScheme = useColorScheme();
-
-//   // return (
-//   //   <Tabs
-//   //     screenOptions={{
-//   //       tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-//   //       headerShown: false,
-        
-//   //     }}>
-//   //     <Tabs.Screen
-//   //       name="index"
-//   //       options={{
-//   //         href:null,
-//   //         title: 'Home',
-//   //         tabBarIcon: ({ color, focused }) => (
-//   //           <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-//   //         ),
-//   //       }}
-//   //     />
-//   //     <Tabs.Screen
-//   //       name="explore"
-//   //       options={{
-//   //         href:null,
-//   //         title: 'Explore',
-//   //         tabBarIcon: ({ color, focused }) => (
-//   //           <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-//   //         ),
-//   //       }}
-//   //     />
-//   //     {/* view Login  */}
-//   //    <Tabs.Screen
-//   //      name="login"
-//   //      options={{
-//   //       href:null
-//   //      }}
-//   //    /> 
-//   //   </Tabs>
-//   // );
-
-//   return(
-//     <GestureHandlerRootView>
-//       <Drawer>
-//        <Drawer.Screen
-//         name='index'
-//         options={{
-//           drawerLabel:'Home',
-//           title:'home'
-//         }}
-//        />    
-//       </Drawer>
-//     </GestureHandlerRootView>
-//   );
-// }
-
-
 import { Redirect,Stack } from "expo-router";
 import {useSession} from '@/scripts/ctx'
 import {Text} from 'react-native';
-import {Drawer} from 'expo-router/drawer'
-import { DrawerActions } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import CustomDrawerContent from '@/components/CustomDrawer'
 
+//pages
+import HomeScreen  from '@/app/(tabs)/index' 
+import ProfileScreen from '@/app/(tabs)/Profile'
 
+//in this line, it will execute a function to routers and nav
+const Drawer = createDrawerNavigator();
 
 export default function AppLayout(){
    const {session,isLoading}=useSession();
@@ -84,17 +24,42 @@ export default function AppLayout(){
    }
 
 
-     return(
+   return(
     <GestureHandlerRootView>
-      <Drawer>
+      <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
+      <Drawer.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            drawerLabel: 'Home',
+            title: 'Home'
+          }}
+        />
+       
        <Drawer.Screen
+         name='Profile'
+         component={ProfileScreen}
+         options={{
+            drawerLabel: 'Profile',
+            title: 'Profile'
+         }}
+       />
+
+       {/* <Drawer.Screen
         name='index'
         options={{
           drawerLabel:'Home',
           title:'home'
         }}
-       />    
-      </Drawer>
+       /> 
+       <Drawer.Screen
+        name='Profile'
+        options={{
+          drawerLabel:'Profile',
+          title:'Profile'
+        }}
+       />     */}
+      </Drawer.Navigator>
     </GestureHandlerRootView>
      );
 }

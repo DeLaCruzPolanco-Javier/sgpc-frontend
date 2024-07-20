@@ -77,7 +77,7 @@ export default function LoginScreen(){
          <View style={styles.verticalTXT}>
             <Icon 
               name='lock'
-              type='font-awsome'
+              type='font-awesome'
               color='#242A3A'
             />
             <Text style={styles.titlesub}>Forgot your password</Text>
