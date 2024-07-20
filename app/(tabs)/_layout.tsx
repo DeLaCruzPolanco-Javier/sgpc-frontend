@@ -6,8 +6,27 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import CustomDrawerContent from '@/components/CustomDrawer'
 
 //pages
+/**
+ * Common views
+ */
 import HomeScreen  from '@/app/(tabs)/index' 
 import ProfileScreen from '@/app/(tabs)/Profile'
+
+/**
+ * views to admin user
+ */
+import OrderMaterialScreen from '@/app/(tabs)/administrador/OrderMaterial'
+
+/**
+ * views to quality user
+ */
+
+
+/**
+ * views to suprviser user
+ */
+
+
 
 //in this line, it will execute a function to routers and nav
 const Drawer = createDrawerNavigator();
@@ -27,6 +46,7 @@ export default function AppLayout(){
    return(
     <GestureHandlerRootView>
       <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
+      {/* this is common view */}
       <Drawer.Screen
           name="Home"
           component={HomeScreen}
@@ -35,7 +55,21 @@ export default function AppLayout(){
             title: 'Home'
           }}
         />
+
+      {/* here, it wil be added views to admin user */}
+       <Drawer.Screen
+          name="Order Material"
+          component={OrderMaterialScreen}
+          options={{
+            drawerLabel: 'Order Material',
+            title: 'Order Material'
+          }}
+       />
+      {/* here, it wil be added views to supervisor user */}
+
+      {/* here, it wil be added views to quality user */}
        
+       {/* this is common view */}
        <Drawer.Screen
          name='Profile'
          component={ProfileScreen}
