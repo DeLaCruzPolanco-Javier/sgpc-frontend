@@ -4,11 +4,14 @@ import {Text} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import CustomDrawerContent from '@/components/CustomDrawer'
+import home from "./supervisor/home";
+
 
 //pages
 /**
  * Common views
  */
+
 import HomeScreen  from '@/app/(tabs)/index' 
 import ProfileScreen from '@/app/(tabs)/Profile'
 
@@ -79,6 +82,15 @@ export default function AppLayout(){
          }}
        />
 
+      {/*----------------- supervisor --------------------*/}
+      <Drawer.Screen
+          name="home supervisor"
+          component={home}
+          options={{
+            drawerLabel: 'Order Material',
+            title: 'Order Material'
+          }}
+
        {/* <Drawer.Screen
         name='index'
         options={{
@@ -96,4 +108,7 @@ export default function AppLayout(){
       </Drawer.Navigator>
     </GestureHandlerRootView>
      );
+     
 }
+
+
